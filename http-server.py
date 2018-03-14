@@ -1,19 +1,18 @@
 #!/usr/bin/python
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+from os import curdir,sep
 
 PORT_NUMBER = 8080
 
-#This class will handles any incoming request from
-#the browser 
 class myHandler(BaseHTTPRequestHandler):
 	
 	#Handler for the GET requests
 	def do_GET(self):
 		self.send_response(200)
-		self.send_header('Content-type','text/html')
+		self.send_header('Content-type','image/png')
 		self.end_headers()
-		# Send the html message
-		self.wfile.write("Hello World !")
+		f = open(curdir + sep + 'logo.png')
+		self.wfile.write(f.read())
 		return
 
 try:
